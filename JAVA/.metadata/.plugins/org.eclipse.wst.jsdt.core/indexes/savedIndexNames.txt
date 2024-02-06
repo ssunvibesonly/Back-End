@@ -1,2 +1,1 @@
-INDEX VERSION 1.4+C:\Study\JAVA\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-170651876.index
+INDEX VERSION 1.4+C:\Study_BackEnd\JAVA\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
