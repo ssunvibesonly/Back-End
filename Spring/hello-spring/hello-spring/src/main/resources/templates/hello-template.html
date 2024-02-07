@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<!--thymleaf 템플릿 엔진이 동작을 하면 "hello! empty"가 th:text=""의 내용으로 치환이 된다-->
+<p th:text="'hello ' + ${name}">hello! empty</p>
+</body>
+</html>
+<!--thymeleaf의 장점-->
+<!--해당 파일의 Absolute Path 복사 후 URL창에 입력하면 서버없이도 소스를 볼 수 있다.-->
+<!--서버를 실행시키지 않았을 경우엔, hello! empty가 출력된다.-->
