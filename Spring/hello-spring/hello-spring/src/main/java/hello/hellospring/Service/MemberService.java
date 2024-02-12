@@ -3,6 +3,8 @@ package hello.hellospring.Service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +16,7 @@ public class MemberService {
 
     //memberRepository를 new()로 직접 생성해서 쓰는 것이 아니라 외부에서 넣어주도록 생성자를 만들어준다.
     //늘 new()로 생성해서 만들면, 그건 동일한 인스턴스들을 사용하는게 아니라 다 다른 인스턴스를 이용해 테스트 하는 것이기 때문이다.
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
@@ -34,7 +37,7 @@ public class MemberService {
     private void validateDuplicateMember(Member member) {
         Optional<Member> result = memberRepository.findByname(member.getName());
         result.ifPresent(m->{
-            throw  new IllegalStateException("이미 존재하는 회원입니다.");
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
         });
     }
     
@@ -43,6 +46,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    //ID에 해당하는 사용자 찾기
     public Optional<Member> findOne(Long memberId){
         return memberRepository.findById(memberId);
     }

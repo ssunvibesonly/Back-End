@@ -25,6 +25,8 @@ class MemberServiceTest {
     @BeforeEach
     public void beforeEach(){
         memberRepository = new MemoryMemberRepository();
+
+        //memberService가 memberRepository를 파라메터로 사용하는 이유는 의존성 주입을 하고 있기 때문이다.
         memberService = new MemberService(memberRepository);
     }
 
