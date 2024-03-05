@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"> <!--ViewResolver를 통해 해당 화면을 보여주고 타임리프가 렌더링하여 화면 구현-->
+<head>
+    <title>HOME</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div>
+
+    <!--form : 값을 입력할 수 있는 태그-->
+    <form action="/members/new" method="post">
+        <div class="form-group">
+
+            <!--       for="name"은 label과 연결된 입력(input)요소를 명시한다.-->
+            <!--       이 lable과 연결된 입력 요소의 id(아이디)가 name인 요소이다.-->
+            <label for="name">이름</label>
+
+            <!--name은 server로 넘어오는 key가 된다.-->
+            <input type="text" id="name" name="name" placeholder="이름을 입력하세요.">
+        </div>
+        <button type="submit">등록</button>
+    </form>
+
+</div>
+</body>
+</html>
