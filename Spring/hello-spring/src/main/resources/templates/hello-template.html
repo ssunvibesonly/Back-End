@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<!--thymeleaf는 파일 경로(Absolute path)를 복사해서 URL창에 넣으면 바로 경로를 찾는다.-->
+<!--템플릿 엔진이 동작되는 곳은 th:text="" 이 부분이면 꺽쇠 바깥 부분은 서버없이 그냥 html을 만들어서 보려고 기입하는 것-->
+<p th:text="'hello '+${name}">hello! empty</p>
+</body>
+</html>
