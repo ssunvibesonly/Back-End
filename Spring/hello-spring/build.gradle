@@ -19,6 +19,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//자바는 기본적으로 DB랑 붙으려면 jdbc 드라이버가 꼭 있어야 한다.
+	//implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	runtimeOnly 'com.h2database:h2'
+	//JPA
+	// boot-starter-data-jpa를 넣으면 spring이 entitymanager를 자동으로 생성해준다.
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //JPA, JDBC 다 포함
+
 }
 
 tasks.named('test') {
