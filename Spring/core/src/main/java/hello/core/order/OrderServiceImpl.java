@@ -9,12 +9,17 @@ import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository=new MemoryMemberRepository();
-    //private final DiscountPolicy discountPolicy=new FixDiscountPolicy(); => final은 무조건 값이 할당 되야 된다.
+    private final MemberRepository memberRepository; // => final이 있으면 기본으로 할당되든, 생성자로 할당되는 무조건 할당되야 한다.
+    //private final DiscountPolicy discountPolicy=new FixDiscountPolicy();
     //private final DiscountPolicy discountPolicy=new RateDisCountPolicy();
 
     //DIP(의존 관계 역전 원칙)를 위반하지 않도록 인터페이스에만 의존하도록 의존관계 변경
     private  DiscountPolicy discountPolicy; //구체화에 의존하지 않고 추상화인 인터페이스에만 OrderServiceImpl이 의존
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
 
     @Override
