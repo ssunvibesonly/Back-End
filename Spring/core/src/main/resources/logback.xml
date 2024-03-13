@@ -6,7 +6,7 @@
         </encoder>
     </appender>
 <!--   CoreApplication처럼 스프링 부트를 실행할 때는 root level="INFO"로 변경하거나 logback.xml 삭제 -->
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
