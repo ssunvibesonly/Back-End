@@ -12,6 +12,7 @@ import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 //어플리케이션에 대한 환경 구성들은 AppConfig에서 한다.
 //AppConfig는 어플리케이션의 실제 동작에 필요한 "구현 객체를 생성" 한다.
