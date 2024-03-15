@@ -9,7 +9,8 @@ public class MemberServiceImpl implements MemberService{
     // 생성자를 통해 AppConfig에서 MemberRepository를 파라메터로 받아온다.
     // 따라서 MemberServiceImpl은 인터페이스에만 의존하게 되므로 DIP 원칙을 지킨다.
     private final MemberRepository memberRepository;
-    @Autowired //마치 ac.getBean(MemberRepository.class) 처럼 동작한다고 이해!
+    //마치 ac.getBean(MemberRepository.class) 처럼 동작한다고 이해!
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
