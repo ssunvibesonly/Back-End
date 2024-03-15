@@ -17,10 +17,12 @@ public class OrderServiceImpl implements OrderService{
     //private final DiscountPolicy discountPolicy=new RateDisCountPolicy();
 
     //DIP(의존 관계 역전 원칙)를 위반하지 않도록 인터페이스에만 의존하도록 의존관계 변경
-    private  DiscountPolicy discountPolicy; //구체화에 의존하지 않고 추상화인 인터페이스에만 OrderServiceImpl이 의존
+    private final DiscountPolicy discountPolicy; //구체화에 의존하지 않고 추상화인 인터페이스에만 OrderServiceImpl이 의존
 
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        System.out.println("memberRepository = " + memberRepository);
+        System.out.println("discountPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
