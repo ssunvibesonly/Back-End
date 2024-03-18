@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RateDisCountPolicyTest {
-    RateDisCountPolicy disCountPolicy=new RateDisCountPolicy();
+    RateDiscountPolicy disCountPolicy=new RateDiscountPolicy();
 
     @Test
     @DisplayName("VIP 회원은 10% 할인이 적용되어야 한다.")

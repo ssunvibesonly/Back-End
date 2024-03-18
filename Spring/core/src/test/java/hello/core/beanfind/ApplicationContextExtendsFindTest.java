@@ -3,7 +3,7 @@ package hello.core.beanfind;
 import hello.core.AppConfig;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
-import hello.core.discount.RateDisCountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ public class ApplicationContextExtendsFindTest {
     @DisplayName("부모 타입으로 조회 시, 자식이 둘 이상 있으면, 빈 이름을 지정하면 된다.")
     void findBeanByParentTypeBeanName(){
         DiscountPolicy rateDiscountPolicy=ac.getBean("rateDisCountPolicy",DiscountPolicy.class);
-        assertThat(rateDiscountPolicy).isInstanceOf(RateDisCountPolicy.class);
+        assertThat(rateDiscountPolicy).isInstanceOf(RateDiscountPolicy.class);
     }
 
     @Test
@@ -60,15 +60,15 @@ public class ApplicationContextExtendsFindTest {
     @DisplayName("특정 하위 타입으로 조회")
     //권장하지 않는 방법 -> 왜냐? 구현체에 의존해서 확인하기 때문에
     void findBeanBySubType(){
-        RateDisCountPolicy rateDisCountPolicy=ac.getBean(RateDisCountPolicy.class);
-        assertThat(rateDisCountPolicy).isInstanceOf(RateDisCountPolicy.class);
+        RateDiscountPolicy rateDisCountPolicy=ac.getBean(RateDiscountPolicy.class);
+        assertThat(rateDisCountPolicy).isInstanceOf(RateDiscountPolicy.class);
     }
 
     @Configuration
     static class TestConfig{
         @Bean
         public DiscountPolicy rateDisCountPolicy(){
-            return new RateDisCountPolicy();
+            return new RateDiscountPolicy();
         }
 
         @Bean
