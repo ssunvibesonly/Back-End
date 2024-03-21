@@ -8,8 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
+@Getter  @Setter
 public class Member {
     @Id @GeneratedValue
     private long id;

@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +17,8 @@ public class MemberRepositoryTest {
     MemberRepository memberRepository;
 
     @Test
-    @Transactional
+    @Transactional // test가 끝나고 난 후 rollback을 해버린다.
+    @Rollback(false)
     public void testMember(){
         //given
         Member member=new Member();
@@ -28,5 +30,7 @@ public class MemberRepositoryTest {
         //then
         assertThat(findMember.getId()).isEqualTo(member.getId());
         assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+        assertThat(findMember).isEqualTo(member);
+        System.out.println("findMember == member : " + (findMember == member));
     }
 }
