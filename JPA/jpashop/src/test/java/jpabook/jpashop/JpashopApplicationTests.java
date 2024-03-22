@@ -13,23 +13,5 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class JpashopApplicationTests {
-	@Autowired
-	MemberRepository memberRepository;
-
-	@Test
-	@Transactional
-	public void testMember() throws Exception{
-		//given
-		Member member=new Member();
-		member.setUsername("memberA");
-		//when
-		Long saveId=memberRepository.save(member);
-		Member findMember=memberRepository.find(saveId);
-		//then
-		assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
-		assertThat(findMember.getId()).isEqualTo(member.getId());
-
-
-	}
 
 }

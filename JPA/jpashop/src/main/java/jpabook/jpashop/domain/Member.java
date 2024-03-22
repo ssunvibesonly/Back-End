@@ -25,4 +25,5 @@ public class Member {
     //mappedBy를 적는 순간 매핑하는 객체가 아니라 매핑된 거울일 뿐이라는 읽기 전용이 된다.
     @OneToMany(mappedBy = "member")
     private List<Order> orders=new ArrayList<>();
+
 }
