@@ -19,8 +19,8 @@ public class MemberServiceTest {
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
     @Autowired EntityManager em;
+
     @Test
-    @Rollback(false)
     public void 회원_가입() throws Exception{
         //given
         Member member=new Member();
