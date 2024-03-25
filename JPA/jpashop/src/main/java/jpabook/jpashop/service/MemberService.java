@@ -19,7 +19,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     //회원 가입
-    @Transactional //쓰기에는 readOnly=true가 적용되면 안되므로 @Transactional 따로 설정해준다.
+    @Transactional //"쓰기"에는 readOnly=true가 적용되면 안되므로 @Transactional 따로 설정해준다.
     public Long join(Member member){
         //중복 회원 검증 - 중복 회원일 경우 예외 발생 메서드
         validateDuplicateMember(member);
