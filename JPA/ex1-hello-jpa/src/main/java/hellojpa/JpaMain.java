@@ -12,15 +12,7 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try{
-            //비영속
-            Member member=new Member();
-            member.setId(100L);
-            member.setName("HelloJPA");
-            
-            //영속(이 때 DB에 저장되는 것이 아니다.)
-            em.persist(member);
-
-            tx.commit();
+            tx.commit(); //commit 시점에 데이터베이스에 쿼리가 날아간다.
         }catch (Exception e){
             tx.rollback();
         }finally {
