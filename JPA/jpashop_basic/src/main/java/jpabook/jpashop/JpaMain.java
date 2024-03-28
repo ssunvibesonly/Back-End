@@ -2,6 +2,7 @@ package jpabook.jpashop;
 
 import jakarta.persistence.*;
 import jakarta.transaction.Transaction;
+import jpabook.jpashop.domain.Order;
 
 public class JpaMain {
 
@@ -13,6 +14,7 @@ public class JpaMain {
         tx.begin();
 
         try {
+
             tx.commit();
         }catch (Exception e){
             tx.rollback();

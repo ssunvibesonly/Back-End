@@ -12,13 +12,14 @@ public class Team {
     @Column(name = "TEAM_ID")
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "team") //"team"은 Member에 있는 Team 변수명 team이다.
+    @OneToMany
+    @JoinColumn(name="TEAM_ID")
     private List<Member> members=new ArrayList<>(); //ArrayList로 초기화 해두는 것이 관례!(NullPointException 방지)
 
-    public void addMember(Member member){
+/*    public void addMember(Member member){
         member.setTeam(this);
         members.add(member);
-    }
+    }*/
     public Long getId() {
         return id;
     }

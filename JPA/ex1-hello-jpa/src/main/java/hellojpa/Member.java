@@ -2,7 +2,9 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -13,11 +15,15 @@ public class Member {
     private Long id;
     @Column(name = "USERNAME") //컬럼명 변경
     private String username;
+
     @ManyToOne
-    @JoinColumn(name = "TEAM_ID") //조인해야하는 컬럼명(외래 키가 된다.)
+    @JoinColumn(name="TEAM_ID" ,insertable = false, updatable = false) //등록, 수정을 false로 둬서 결과적으로 읽기 전용으로 만듦
     private Team team;
-
-
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts=new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -33,14 +39,6 @@ public class Member {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 
     // 연관 관계 편의 메서드나, JPA의 상태를 변경하는 경우에는 set을 잘 쓰지 않도록 하자

@@ -12,29 +12,16 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            //저장
+           Member member=new Member();
+           member.setUsername("member1");
 
-            Team team = new Team();
-            team.setName("TeamA");
-            //team.getMembers().add(member)
-            em.persist(team);
+           em.persist(member);
 
-            Member member = new Member();
-            member.setUsername("member1");
-            // member.changeTeam(team); //** 멤버 엔티티를 기준으로 팀을 넣기
-            em.persist(member);
+           Team team=new Team();
+           team.setName("teamA");
+           team.getMembers().add(member);
 
-            team.addMember(member); //팀 엔티티을 기준으로 멤버를 넣기
-
-            em.flush();
-            em.clear();
-
-            Team findTeam=em.find(Team.class,team.getId());
-            List<Member> findMember=findTeam.getMembers();
-
-            for (Member m : findMember) {
-                System.out.println("member = " + m.getUsername());
-            }
+           em.persist(team);
 
             tx.commit(); //commit 시점에 데이터베이스에 쿼리가 날아간다.
         }catch (Exception e){
