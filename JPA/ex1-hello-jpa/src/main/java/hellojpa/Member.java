@@ -5,21 +5,19 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@SequenceGenerator(name = "MEMBER_SEQ_GENERATOR",
-sequenceName = "MEMBER_SEQ", //매핑할 데이터베이스 시퀀스 이름
-initialValue = 1, allocationSize = 50 )
 public class Member {
     @Id //직접 할당 : 직접 ID를 만들어서 할 당하는 경우 @Id
     //@GeneratedValue IDENTITY 전략인 경우는 예외적이로 지연 쓰기 시점에 쿼리문이 DB로 날아간다.
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-    generator = "MEMBER_SEQ_GENERATOR")
+    @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
-    @Column(name = "name", nullable = false) //컬럼명 변경
+    @Column(name = "USERNAME") //컬럼명 변경
     private String username;
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID") //조인해야하는 컬럼명(외래 키가 된다.)
+    private Team team;
 
-    public Member(){
 
-    }
 
     public Long getId() {
         return id;
@@ -36,4 +34,27 @@ public class Member {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    // 연관 관계 편의 메서드나, JPA의 상태를 변경하는 경우에는 set을 잘 쓰지 않도록 하자
+    // 메서드화 시켜서 사용하자
+/*    public void changeTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);// this는 자기 자신 Member
+
+    }*/
+
+    public Member(){
+
+    }
+
+
+
 }

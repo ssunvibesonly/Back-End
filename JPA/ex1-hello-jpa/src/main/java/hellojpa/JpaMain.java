@@ -11,27 +11,30 @@ public class JpaMain {
         //모든 데이터를 변경하는 모든 작업은 JPA에서 꼭 transaction 단위 안에서 작업을 해야 한다.
         EntityTransaction tx = em.getTransaction();
         tx.begin();
-        try{
-            Member member1=new Member();
-            member1.setUsername("A");
+        try {
+            //저장
 
-            Member member2=new Member();
-            member2.setUsername("B");
+            Team team = new Team();
+            team.setName("TeamA");
+            //team.getMembers().add(member)
+            em.persist(team);
 
-            Member member3=new Member();
-            member3.setUsername("C");
+            Member member = new Member();
+            member.setUsername("member1");
+            // member.changeTeam(team); //** 멤버 엔티티를 기준으로 팀을 넣기
+            em.persist(member);
 
-            System.out.println("=======================================");
+            team.addMember(member); //팀 엔티티을 기준으로 멤버를 넣기
 
-            em.persist(member1); //1,51
-            em.persist(member2); //MEM
-            em.persist(member3); //MEM
+            em.flush();
+            em.clear();
 
-            System.out.println("member1 = " + member1.getId());
-            System.out.println("member2 = " + member2.getId());
-            System.out.println("member3 = " + member3.getId());
+            Team findTeam=em.find(Team.class,team.getId());
+            List<Member> findMember=findTeam.getMembers();
 
-            System.out.println("=======================================");
+            for (Member m : findMember) {
+                System.out.println("member = " + m.getUsername());
+            }
 
             tx.commit(); //commit 시점에 데이터베이스에 쿼리가 날아간다.
         }catch (Exception e){
