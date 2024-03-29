@@ -2,12 +2,13 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity{
     @Id //직접 할당 : 직접 ID를 만들어서 할 당하는 경우 @Id
     //@GeneratedValue IDENTITY 전략인 경우는 예외적이로 지연 쓰기 시점에 쿼리문이 DB로 날아간다.
     @GeneratedValue
@@ -16,14 +17,9 @@ public class Member {
     @Column(name = "USERNAME") //컬럼명 변경
     private String username;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) //이렇게 하면 프록시 객체로 조회함
     @JoinColumn(name="TEAM_ID" ,insertable = false, updatable = false) //등록, 수정을 false로 둬서 결과적으로 읽기 전용으로 만듦
     private Team team;
-    @OneToOne
-    @JoinColumn(name = "LOCKER_ID")
-    private Locker locker;
-    @OneToMany(mappedBy = "member")
-    private List<MemberProduct> memberProducts=new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -53,6 +49,12 @@ public class Member {
 
     }
 
+    public Team getTeam() {
+        return team;
+    }
 
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
 }

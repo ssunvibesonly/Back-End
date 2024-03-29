@@ -10,8 +10,9 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "BIGINT")
     private Long id;
-    @Column
+
     private String name;
     private String city;
     private String street;

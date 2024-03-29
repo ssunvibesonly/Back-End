@@ -16,7 +16,7 @@ public class Category {
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
-    private List<Category> child=new ArrayList<>();
+     private List<Category> child=new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name="CATEGORY_ITEM",
