@@ -14,24 +14,35 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Member member1 = new Member();
+
+            Team team=new Team();
+            team.setName("teamA");
+            em.persist(team);
+
+            Team teamB=new Team();
+            teamB.setName("teamB");
+            em.persist(teamB);
+
+            Member member1=new Member();
             member1.setUsername("member1");
+            member1.setTeam(team);
             em.persist(member1);
+
+            Member member2=new Member();
+            member2.setUsername("member2");
+            member2.setTeam(teamB);
+            em.persist(member2);
 
             em.flush();
             em.clear();
- 
-            Member refMember = em.find(Member.class, member1.getId());
-            System.out.println("refMember = " + refMember.getClass()); //프록시 객체 출력
-            Hibernate.initialize(refMember); //강제 초기화-> 하이버네이트가 지원하는 것 JPA에는 없음
-            //객체의 초기화 여부 확인
-            System.out.println("isLoaded = " + emf.getPersistenceUnitUtil().isLoaded(refMember));
 
-            //em.detach(refMember); //detach하면 영속성 컨텍스트가 더이상 관리하지 않겠다는 뜻
-            //.getClass()끼리의 비교는 m1과 m2의 인스턴스 타입(클래스)가 동일한지 물어보는 것이므로 true
-            //logic(m1, m2);
+           // Member m=em.find(Member.class, member1.getId());
 
-
+           List<Member> members=em.createQuery("select m from Member m", Member.class)
+                           .getResultList();
+           // SQL : select * from Member 로 쿼리가 나가서 Member테이블을 가지고 오고,
+            //SQL : select * from Member where team=xxx
+            // Member클래스에서 Team의 FetchType이 EAGER인 것을 확인하곤 Team테이블도 가져오는 현상이 발생
 
             tx.commit(); //commit 시점에 데이터베이스에 쿼리가 날아간다.
         }catch (Exception e){
@@ -50,17 +61,6 @@ public class JpaMain {
         //타입 비교 할 때는 꼭 instanceof쓰자
         System.out.println("m1 == m2 : " + (m1 instanceof Member));
         System.out.println("m1 == m2 : " + (m2  instanceof Member));
-    }
-
-    private static void printMember(Member member) {
-        System.out.println("member = " + member.getUsername());
-    }
-
-    private static void printMemberAndTeam(Member member) {
-        String username= member.getUsername();
-        System.out.println("username = " + username);
-        Team team = member.getTeam();
-        System.out.println("team = " + team.getName());
     }
 
 }

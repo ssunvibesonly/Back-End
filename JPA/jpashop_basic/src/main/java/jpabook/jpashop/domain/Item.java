@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn //(name="DTYPE") : 기본값
+public abstract class Item extends BaseEntity{
     @Id @GeneratedValue // @GeneratedValue에 아무것도 안쓰면 default는 Auto이다.
     @Column(name = "ITEM_ID")
     private Long id;

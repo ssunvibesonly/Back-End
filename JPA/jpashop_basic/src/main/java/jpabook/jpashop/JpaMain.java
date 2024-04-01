@@ -2,6 +2,7 @@ package jpabook.jpashop;
 
 import jakarta.persistence.*;
 import jakarta.transaction.Transaction;
+import jpabook.jpashop.domain.Book;
 import jpabook.jpashop.domain.Order;
 
 public class JpaMain {
@@ -14,7 +15,10 @@ public class JpaMain {
         tx.begin();
 
         try {
-
+            Book book=new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
+            em.persist(book);
             tx.commit();
         }catch (Exception e){
             tx.rollback();
