@@ -14,24 +14,21 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
+            Address address = new Address("city", "street", "10000");
 
-            Child child1 = new Child();
-            Child child2 = new Child();
+            Member member1=new Member();
+            member1.setUsername("member1");
+            member1.setHomeAddress(address);
+            em.persist(member1);
 
-            Parent parent=new Parent();
-            parent.addChild(child1);
-            parent.addChild(child2);
+            Address copyAddress=new Address(address.getCity(),address.getStreet(), address.getZipcode());
 
-            em.persist(parent);
+            Member member2 = new Member();
+            member2.setUsername("member2");
+            member2.setHomeAddress(copyAddress);
+            em.persist(member2);
 
-            em.flush();
-            em.clear();
-
-            Parent findParent=em.find(Parent.class, parent.getId());
-            em.remove(findParent);
-
-
-
+            member1.getHomeAddress().setCity("newCity");
 
             tx.commit(); //commit 시점에 데이터베이스에 쿼리가 날아간다.
         }catch (Exception e){
