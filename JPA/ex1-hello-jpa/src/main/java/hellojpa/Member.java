@@ -17,7 +17,7 @@ public class Member extends BaseEntity{
     @Column(name = "USERNAME") //컬럼명 변경
     private String username;
 
-    @ManyToOne(fetch = FetchType.LAZY) //LAZY이면 프록시 객체로 조회함 -> 즉, Member 클래스만 DB에서 조회한단 뜻ㄴ
+    @ManyToOne(fetch = FetchType.LAZY) //LAZY이면 프록시 객체로 조회함 -> 즉, Member 클래스만 DB에서 조회한단 뜻
     @JoinColumn(name="TEAM_ID") //등록, 수정을 false로 둬서 결과적으로 읽기 전용으로 만듦
     private Team team;
 
