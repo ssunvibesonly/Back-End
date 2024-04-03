@@ -3,9 +3,7 @@ package hellojpa;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Member{
@@ -25,7 +23,27 @@ public class Member{
     @Embedded
     private Address homeAddress;
 
-    //주소
+    @ElementCollection
+    @CollectionTable(name="FAVORITE_FOOD",joinColumns = @JoinColumn(name="MEMBER_ID")) //테이블 명 지정
+    @Column(name="FOOD_NAME")
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    public List<AddressEntity> getAddressHistory() {
+        return addressHistory;
+    }
+
+    public void setAddressHistory(List<AddressEntity> addressHistory) {
+        this.addressHistory = addressHistory;
+    }
+
+    /*    @ElementCollection
+        @CollectionTable(name="ADDRESS", joinColumns = @JoinColumn(name = "MEMBER_ID"))
+        private List<Address> addressHistory=new ArrayList<>();*/
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "MEMBER_ID")
+    private List<AddressEntity> addressHistory=new ArrayList<>();
+
+/*    //주소
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name="city",
@@ -35,7 +53,7 @@ public class Member{
             @AttributeOverride(name="zipcode",
                 column = @Column(name = "WORK_ZIPCODE"))
     })
-    private Address workAddress;
+    private Address workAddress;*/
 
 
     public Long getId() {
@@ -69,4 +87,28 @@ public class Member{
     public void setHomeAddress(Address homeAddress) {
         this.homeAddress = homeAddress;
     }
+
+    public Set<String> getFavoriteFoods() {
+        return favoriteFoods;
+    }
+
+    public void setFavoriteFoods(Set<String> favoriteFoods) {
+        this.favoriteFoods = favoriteFoods;
+    }
+
+/*    public List<Address> getAddressHistory() {
+        return addressHistory;
+    }
+
+    public void setAddressHistory(List<Address> addressHistory) {
+        this.addressHistory = addressHistory;
+    }*/
+
+/*    public Address getWorkAddress() {
+        return workAddress;
+    }
+
+    public void setWorkAddress(Address workAddress) {
+        this.workAddress = workAddress;
+    }*/
 }

@@ -14,9 +14,10 @@ public class Member extends BaseEntity{
     private Long id;
 
     private String name;
-    private String city;
-    private String street;
-    private String zipcode;
+
+    @Embedded
+    private Address address;
+
     @OneToMany(mappedBy = "member") //mappedBy ="member"는 연관 관계 주인(외래키가 있는 곳)의 필드 명이다.
     private List<Order> orders=new ArrayList<>(); //Null 방지를 위해 필드를 new로 생성해주어야 하는 것이 관례다!
 
@@ -36,27 +37,20 @@ public class Member extends BaseEntity{
         this.name = name;
     }
 
-    public String getCity() {
-        return city;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public String getStreet() {
-        return street;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
 }

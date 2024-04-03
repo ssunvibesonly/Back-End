@@ -1,6 +1,5 @@
-package hellojpa;
+package jpabook.jpashop.domain;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.util.Objects;
@@ -8,31 +7,37 @@ import java.util.Objects;
 @Embeddable
 public class Address {
 
-    public String city;
-    public String street;
-    @Column(name = "ZIPCODE")
-    public String zipcode;
+    private String city;
+    private String street;
+    private String zipcode;
 
-    public Address(){
-
+    public String fullAddress(){
+        return getCity() + " " + getStreet() + " " + getZipcode();
     }
 
-    public Address(String city, String street, String zipcode) {
-        this.city = city;
-        this.street = street;
-        this.zipcode = zipcode;
-    }
 
     public String getCity() {
         return city;
+    }
+
+    private void setCity(String city) {
+        this.city = city;
     }
 
     public String getStreet() {
         return street;
     }
 
+    private void setStreet(String street) {
+        this.street = street;
+    }
+
     public String getZipcode() {
         return zipcode;
+    }
+
+    private void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 
     @Override
