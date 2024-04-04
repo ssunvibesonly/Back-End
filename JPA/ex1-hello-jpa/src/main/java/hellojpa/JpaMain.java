@@ -1,6 +1,9 @@
 package hellojpa;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Hibernate;
 
 import java.time.LocalDateTime;
@@ -15,40 +18,35 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Member member=new Member();
-            member.setUsername("member1");
-            member.setHomeAddress(new Address("homeCity", "street","10000"));
 
-            //member와 다른 테이블인데도 불구하고 member저장 시 같이 값이 들어감
-            //왜냐? 값 타입이기 때문에. 값 타입 컬렉션도 스스로 라이프 사이클이 없다.
-            // 모든 라이프 사이클에 대한 것이 엔티티에 의존함
-            member.getFavoriteFoods().add("치킨");
-            member.getFavoriteFoods().add("족발");
-            member.getFavoriteFoods().add("피자");
+            //Native 쿼리
+            em.createNativeQuery("select MEMBER_ID, city, street, zipcode, USERNAME from MEMBER")
+                    .getResultList();
 
-            member.getAddressHistory().add(new AddressEntity("old1", "street","10000"));
-            member.getAddressHistory().add(new AddressEntity("old2", "street","10000"));
+            //Criteria 사용 준비 -> Criteria는 자바 표준 문법이다.
+           /* CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Member> query = cb.createQuery(Member.class);
 
-            em.persist(member);
+            Root<Member> m = query.from(Member.class); //Member를 대상으로 from절
+            CriteriaQuery<Member> cq = query.select(m).where(cb.equal(m.get("username"),"kim")); //username이 kim인 사람;
+            String username = "asdf";
+            if(username != null){
+                cq = cq.where(cb.equal(m.get("username"), "kim"));
+            }
 
-            em.flush();
-            em.clear();
+            List<Member> resultList = em.createQuery(cq).getResultList();
 
-            System.out.println("========== START ============= ");
-            Member findMember = em.find(Member.class, member.getId());
+            em.createQuery(cq).getResultList();*/
 
-            //homeCity -> newCity
-            //findMember.getHomeAddress().setCity("newCity"); -> 이렇게 쓰면 사이드이펙트 발생할 수 있어서 절대 안됨!
-            Address a = findMember.getHomeAddress();
-            findMember.setHomeAddress(new Address("newCity",a.getStreet(),a.getZipcode()));
 
-            //치킨 -> 한식 (단순 String 형태이기 때문에 remove 후 새로 add를 해서 넣어야 한다.)
-            findMember.getFavoriteFoods().remove("치킨");
-            findMember.getFavoriteFoods().add("한식");
-
-            //컬렉션마다 다르긴 하지만 기본적으로 컬렉션들은 대부분 대상을 찾을 때 equals를 사용한다.
-          /*  findMember.getAddressHistory().remove(new Address("old1", "street","10000"));
-            findMember.getAddressHistory().add(new Address("newCity1","street","10000"));*/
+            //Member는 테이블이 아니라 엔티티를 가리킨다.
+            // m은 Member 자체를 조회한다.
+      /*      List<Member> resultList = em.createQuery(
+                            "select m From Member m where m.username like '%kim%'", Member.class)
+                    .getResultList();
+            for (Member member : resultList) {
+                System.out.println("member = " + member);
+            }*/
 
             tx.commit(); //commit 시점에 데이터베이스에 쿼리가 날아간다.
         }catch (Exception e){
