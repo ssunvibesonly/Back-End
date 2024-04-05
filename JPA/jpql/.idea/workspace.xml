@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5cfddeb-6362-44c1-820b-9390d8d5e50e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jpql/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jpql/JpaMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jpql/Member.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jpql/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jpql/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/jpql/Team.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/hellojpa/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ex1-hello-jpa/src/main/java/hellojpa/JpaMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ex1-hello-jpa/src/main/java/hellojpa/JpaMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ex1-hello-jpa/target/classes/hellojpa/JpaMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ex1-hello-jpa/target/classes/hellojpa/JpaMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jpashop_basic/src/main/java/jpabook/jpashop/domain/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/../jpashop_basic/src/main/java/jpabook/jpashop/domain/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/jpql/MemberDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jpql/JpaMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jpql/JpaMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jpql/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jpql/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jpql/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jpql/Team.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,10 +26,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2ece9T6ReHPqOjGZ3nPr0QgrxsK" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -49,17 +37,17 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.JpaMain.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/개인공부/Back-End/JPA/jpql/src/main/resources"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.JpaMain.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/개인공부/Back-End/JPA/jpql/src/main/resources&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\개인공부\Back-End\JPA\jpql\src\main\resources" />
