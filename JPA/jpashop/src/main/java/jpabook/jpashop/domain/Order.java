@@ -53,7 +53,7 @@ public class Order {
     }
 
     // 생성 메서드
-    public static Order CreateOrder(Member member,Delivery delivery, OrderItem... orderItems){
+    public static Order createOrder(Member member,Delivery delivery, OrderItem... orderItems){
         //OrderItem...은 가변 인자를 나타낸다. -> 메소드에게 여러개의 인자를 전달할 수 있도록 한다.
         Order order=new Order();
         order.setMember(member);
