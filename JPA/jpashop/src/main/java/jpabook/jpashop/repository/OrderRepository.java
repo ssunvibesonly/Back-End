@@ -5,6 +5,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -84,4 +85,17 @@ public class OrderRepository {
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000); //최대 1000건
         return query.getResultList();
     }
+
+    //패치 조인(기본적으로 LAZY로 깔고 필요한건 패치조인으로 묶어서 가져오면 대부분의 성능 문제 해결)
+    public List<Order> findAllWithMemberDelivery() {
+
+        //Order를 한 번에 멤버,배송 객체까지 다 가지고 오는 쿼리 join fetch
+        return em.createQuery("select o from Order o "+
+                "join fetch o.member m " +
+                "join fetch o.delivery d",Order.class)
+                .getResultList();
+    }
+
+
+
 }
