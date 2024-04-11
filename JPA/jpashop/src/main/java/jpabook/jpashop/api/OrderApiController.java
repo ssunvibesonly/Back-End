@@ -36,13 +36,20 @@ public class OrderApiController {
 
     @GetMapping("/api/v2/orders")
     public List<OrderDto> ordersV2(){
+        //검색 조건 없이 가져오면 다 가져오는 코드
        List<Order> orders = orderRepository.findAllByString(new OrderSearch());
-       //엔티티 -> stream 변환할 땐 stream() map()사용
+       //엔티티 -> DTO 변환할 땐 stream() map()사용
        List<OrderDto> collect = orders.stream()
                .map(o->new OrderDto(o))
                .collect(Collectors.toList());
 
        return collect;
+    }
+
+    @GetMapping("/api/v3/orders")
+    public List<OrderDto> ordersV3(){
+        List<Order> orders = orderRepository.findAllWithItem();
+        return o
     }
     @Getter
     static class OrderDto{
